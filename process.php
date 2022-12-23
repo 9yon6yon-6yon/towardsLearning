@@ -49,13 +49,18 @@ if (isset($_POST['login_teacher'])) {
   $results = mysqli_query($db, $query);
   $row = mysqli_fetch_array($results);
   if (mysqli_num_rows($results) == 1) {
-    $_SESSION['username'] = $row['username'];
+    $_SESSION['username'] = $row['Name'];
     $_SESSION['email'] = $email;
-    $_SESSION['success'] = "You are now logged in";
-    header('location: dashboard.php?$username');//need modification
+    if ($row['status'] == 'Approved') {
+      $_SESSION['success'] = "You are now logged in";
+      header('location: teacher-dashboard.php?$username');
+    } else {
+      echo "<script>alert('You are not approved yet');</script>";
+      header('location: teacher-login.php');
+    }
   } else {
     echo "<script>alert('Incorrect Information');
-                          window.location = 'login.php';
+                          window.location = 'teacher-login.php';
                   </script>";
   }
 }
@@ -180,6 +185,7 @@ if (isset($_POST['teacherapply'])) {
   $education = mysqli_real_escape_string($db, $_POST['education']);
   $phone = mysqli_real_escape_string($db, $_POST['phone']);
   $address = mysqli_real_escape_string($db, $_POST['address']);
+  $pass = md5(mysqli_real_escape_string($db, $_POST['password']));
 
   $uploadcv = $_FILES["uploadcv"]["name"];
   $tempcv = $_FILES["uploadcv"]["tmp_name"];
@@ -191,8 +197,8 @@ if (isset($_POST['teacherapply'])) {
 
 
 
-  $query = "INSERT INTO `teacher` (`Name`, `Email`, `Subject`, `Education`, `phone`, `address`, `profile_pic`, `cv`) 
-          VALUES('$name', '$email', '$subject','$education','$phone','$address', '$uploadpic', '$uploadcv')";
+  $query = "INSERT INTO `teacher` (`Name`, `Email`, `Subject`, `Education`, `phone`, `address`, `profile_pic`, `cv`, `Password`) 
+          VALUES('$name', '$email', '$subject','$education','$phone','$address', '$uploadpic', '$uploadcv' , '$pass');";
   mysqli_query($db, $query);
   if (move_uploaded_file($tempcv, $folder) && move_uploaded_file($temppic, $folder2)) {
     echo "<script>alert('Your Application Has been Placed. Please wait until approval');
@@ -247,7 +253,64 @@ if (isset($_POST['blogSubmit'])) {
   }
 }
 
+if (isset($_POST['CourseUpload'])) {
+  $productType = $_POST['type'];
+  $productName = dataFilter($_POST['cname']);
+  $productInfo = $_POST['cinfo'];
+  $productPrice = dataFilter($_POST['price']);
+  $tid = $_SESSION['id'];
 
+  $sql = "INSERT INTO `fcourses` (`tid`, `product`, `pcat`, `pinfo`, `price`) VALUES ('$tid', '$productName', '$productType', '$productInfo', '$productPrice');";
+  echo $sql;  
+  $result = mysqli_query($db, $sql);
+  if (!$result) {
+    $_SESSION['message'] = "Unable to upload Product !!!";
+    header("location: teacher-dashboard.php");
+  } else {
+    $_SESSION['message'] = "successfull !!!";
+  }
+
+  $pic = $_FILES['coursePIC'];
+  $picName = $pic['name'];
+  $picTmpName = $pic['tmp_name'];
+  $picSize = $pic['size'];
+  $picError = $pic['error'];
+  $picType = $pic['type'];
+  $picExt = explode('.', $picName);
+  $picActualExt = strtolower(end($picExt));
+  $allowed = array('jpg', 'jpeg', 'png');
+
+  if (in_array($picActualExt, $allowed)) {
+    if ($picError === 0) {
+      $_SESSION['productPicId'] = $_SESSION['id'];
+      $picNameNew = $productName . $_SESSION['productPicId'] . "." . $picActualExt;
+      $_SESSION['productPicName'] = $picNameNew;
+      $_SESSION['productPicExt'] = $picActualExt;
+      $picDestination = "./uploads/" . $picNameNew;
+      move_uploaded_file($picTmpName, $picDestination);
+      $id = $_SESSION['id'];
+
+      $sql = "UPDATE fcourses SET pimage='$picNameNew' WHERE product='$productName';";
+
+      $result = mysqli_query($db, $sql);
+      if ($result) {
+
+        $_SESSION['message'] = "Product Image Uploaded successfully !!!";
+        header("location: teacher-dashboard.php");
+      } else {
+        //die("bad");
+        $_SESSION['message'] = "There was an error in uploading your product Image! Please Try again!";
+        header("location: teacher-dashboard.php");
+      }
+    } else {
+      $_SESSION['message'] = "There was an error in uploading your product image! Please Try again!";
+      header("location: teacher-dashboard.php");
+    }
+  } else {
+    $_SESSION['message'] = "You cannot upload files with this extension!!!";
+    header("location: teacher-dashboard.php");
+  }
+}
 
 function dataFilter($data)
 {
