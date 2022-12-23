@@ -10,7 +10,8 @@
 
     <div class="question-area">
       <div class="sm-title">
-      <img src="img/Logo/logo1.svg" alt="brain-icon">        <div>The Brain - Answerer</div>
+        <img src="img/Logo/logo1.svg" alt="brain-icon">
+        <div>The Brain - Answerer</div>
       </div>
       <div class="big-title">
         <h1>Get Answers for FREE</h1>
@@ -21,7 +22,7 @@
       <?php 
         $ques = mysqli_query($db,"SELECT q_id, Status, question_detail, img, ques_points, username, Subject_Name, created_at  FROM questions q
        JOIN students s ON q.student_id=s.id
-       JOIN subjects sub ON q.subject_code=sub.s_code where sub.s_code = 3 ORDER BY created_at DESC")or die(mysqli_error($db));
+       JOIN subjects sub ON q.subject_code=sub.s_code where sub.s_code = 8 ORDER BY created_at DESC")or die(mysqli_error($db));
       date_default_timezone_set("Asia/Dhaka");
       while($q = mysqli_fetch_assoc($ques))
           {

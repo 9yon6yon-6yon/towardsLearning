@@ -10,8 +10,7 @@
 
     <div class="question-area">
       <div class="sm-title">
-        <img src="img/brain.png" alt="brain-icon">
-        <div>The Brain - Answerer</div>
+      <img src="img/Logo/logo1.svg" alt="brain-icon">        <div>The Brain - Answerer</div>
       </div>
       <div class="big-title">
         <h1>Get Answers for FREE</h1>

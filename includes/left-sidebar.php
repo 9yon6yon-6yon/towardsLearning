@@ -5,7 +5,7 @@
       </div>
       <ul class="nav-list">
         <li>
-          <a href="#" id="English">
+          <a href="english.php" id="English">
             <i class="fas fa-language"></i>
             <span class="links_name">English</span>
           </a>
@@ -29,13 +29,13 @@
          </a>
        </li>
        <li>
-         <a href="#" id="Economics">
+         <a href="eco.php" id="Economics">
            <i class="fas fa-chart-line"></i>
            <span class="links_name">Economics</span>
          </a>
        </li>
        <li>
-         <a href="#" id="Law">
+         <a href="law.php" id="Law">
            <i class="fas fa-balance-scale-right"></i>
            <span class="links_name">Law</span>
          </a>
@@ -47,13 +47,13 @@
          </a>
        </li>
        <li>
-         <a href="#" id="History">
+         <a href="history.php" id="History">
            <i class="fas fa-democrat"></i>
            <span class="links_name">History</span>
          </a>
        </li>
        <li>
-         <a href="#" id="Biology">
+         <a href="biology.php" id="Biology">
            <i class="fas fa-dna"></i>
            <span class="links_name">Biology</span>
          </a>
