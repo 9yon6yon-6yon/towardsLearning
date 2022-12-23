@@ -12,10 +12,6 @@
         $ac=mysqli_fetch_array($sol_count);
   ?>
 
-  <div class="d-block">
-  	<img src="img/wallpaper_english.svg" height="auto" width="100%">
-  </div>
-
   <div class="jinispotro">
   	 <div class="profile-card">
         <div class="img-user">

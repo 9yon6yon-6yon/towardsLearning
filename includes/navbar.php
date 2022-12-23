@@ -8,7 +8,7 @@
     <div class="wrapo">
       <div class="flexes">
         <div class="img-search">
-         <a class="navbar-brand" href="#">
+         <a class="navbar-brand" href="./../../towardsLearning/dashboard.php">
             <img src="img/logo.png" height="100" width="100%" alt="" loading="lazy"
               style="margin-top: 2px" />
           </a>

@@ -67,7 +67,7 @@ CREATE TABLE `students` (
   `Email` varchar(40) NOT NULL,
   `Password` varchar(128) NOT NULL,
   `phone` varchar(16) DEFAULT NULL,
-  `Rank` varchar(20) NOT NULL,
+  `Rank` varchar(20) NOT NULL DEFAULT 0,
   `points` int(10) DEFAULT 100,
   `sactive` int(255) NOT NULL DEFAULT 0,
   `img` varchar(255) DEFAULT NULL

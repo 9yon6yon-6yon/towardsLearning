@@ -12,8 +12,7 @@ if (isset($_POST['reg_user'])) {
   $username = mysqli_real_escape_string($db, $_POST['username']);
   $email = mysqli_real_escape_string($db, $_POST['email']);
   $password = md5(mysqli_real_escape_string($db, $_POST['password']));
-  $query = "INSERT INTO `students`(`username`, `Email`, `Password`)  VALUES ('$username', '$email', '$password');";
-  echo "<pre>Debug : $query</pre>\n";
+  $query = "INSERT INTO `students` ( `username` , `Email` , `Password` )  VALUES ('$username', '$email', '$password');";
   $result =  mysqli_query($db, $query);
   if ($result == false) {
     printf("error: %s\n", mysqli_error($db));
