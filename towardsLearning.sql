@@ -112,7 +112,8 @@ INSERT INTO `subjects` (`s_code`, `Subject_Name`) VALUES
 (6, 'Law'),
 (7, 'Computer Science'),
 (8, 'History'),
-(9, 'Biology');
+(9, 'Biology'),
+(10, 'English');
 
 CREATE TABLE `likedata` (
   `blogId` int(10) NOT NULL,
