@@ -211,8 +211,34 @@ if (isset($_POST['appoint-post'])) {
 }
 if (isset($_POST['b-view-process'])) {
   $sql = "SELECT * FROM blogdata ORDER BY blogId DESC";
-  $result = mysqli_query($conn, $sql);
+  $result = mysqli_query($db, $sql);
   while ($row = $result->fetch_array()) :
     $row['likes'];
   endwhile;
+}
+
+if (isset($_POST['blogSubmit'])) {
+  $title = dataFilter($_POST['blogTitle']);
+  $content = $_POST['blogContent'];
+  $userName = $_SESSION['Username'];
+  $sql = "INSERT INTO `blogdata` (`blogUser`, `blogTitle`, `blogContent`)
+		    VALUES ('$userName', '$title', '$content');";
+  $result = mysqli_query($db, $sql);
+
+  if (!$result) {
+    $_SESSION['message'] = "Some Error occurred !!!";
+    header("location: errors.php");
+  } else {
+    header('location: blogView.php');
+  }
+}
+
+
+
+function dataFilter($data)
+{
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
 }
