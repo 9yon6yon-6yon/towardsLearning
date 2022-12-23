@@ -23,8 +23,6 @@ if (isset($_POST['reg_user'])) {
   header('location: dashboard.php');
 }
 
-
-
 if (isset($_POST['login_user'])) {
   $email = mysqli_real_escape_string($db, $_POST['email']);
   $password = md5(mysqli_real_escape_string($db, $_POST['password']));
@@ -79,8 +77,6 @@ if (isset($_POST['login_admin'])) {
                   </script>";
   }
 }
-
-
 
 if (isset($_POST['post'])) {
   $points = $_POST['point'];
