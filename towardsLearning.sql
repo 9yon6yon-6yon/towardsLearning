@@ -1,3 +1,4 @@
+DROP database IF exists `towardsLearning`;
 CREATE database   if not exists `towardsLearning`;
 CREATE TABLE `admin` (
   `admin_id` int(11) NOT NULL,
@@ -128,6 +129,7 @@ CREATE TABLE `teacher` (
   `address` varchar(255) NOT NULL,
   `profile_pic` varchar(255) NOT NULL,
   `cv` varchar(255) NOT NULL,
+  `Password` varchar(128) NOT NULL,
   `status` varchar(200) NOT NULL DEFAULT 'Unapproved'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -191,10 +193,10 @@ ALTER TABLE `likedata`
   ADD KEY `blogUserId` (`blogUserId`);
 
 ALTER TABLE `blogdata`
-  MODIFY `blogId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `blogId` int(10) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `fcourses`
-  MODIFY `pid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `pid` int(255) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `likedata`
   ADD CONSTRAINT `likedata_ibfk_1` FOREIGN KEY (`blogId`) REFERENCES `blogdata` (`blogId`);
 COMMIT;

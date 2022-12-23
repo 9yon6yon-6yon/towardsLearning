@@ -69,6 +69,9 @@
                   </a>
                 </p>
                 <p class="mt-6 text-xs text-gray-600 text-center">Or, login as
+                  <a href="admin-login.php" class="border-b border-gray-500 border-dotted" name = "login_teacher"> Teacher</a>
+                </p>
+                <p class="mt-6 text-xs text-gray-600 text-center">Or, login as
                   <a href="admin-login.php" class="border-b border-gray-500 border-dotted" name = "login_admin"> admin</a>
                 </p>
               </div>

@@ -43,6 +43,24 @@ if (isset($_POST['login_user'])) {
                   </script>";
   }
 }
+if (isset($_POST['login_teacher'])) {
+  $email = mysqli_real_escape_string($db, $_POST['email']);
+  $password = md5(mysqli_real_escape_string($db, $_POST['password']));
+  $query = "SELECT * FROM `teacher` WHERE Email='$email' AND Password='$password';";
+
+  $results = mysqli_query($db, $query);
+  $row = mysqli_fetch_array($results);
+  if (mysqli_num_rows($results) == 1) {
+    $_SESSION['username'] = $row['username'];
+    $_SESSION['email'] = $email;
+    $_SESSION['success'] = "You are now logged in";
+    header('location: dashboard.php?$username');//need modification
+  } else {
+    echo "<script>alert('Incorrect Information');
+                          window.location = 'login.php';
+                  </script>";
+  }
+}
 
 if (isset($_POST['login_admin'])) {
   $email = mysqli_real_escape_string($db, $_POST['email']);
