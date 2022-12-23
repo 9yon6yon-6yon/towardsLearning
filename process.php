@@ -29,7 +29,7 @@ if (isset($_POST['login_user'])) {
   $email = mysqli_real_escape_string($db, $_POST['email']);
   $password = md5(mysqli_real_escape_string($db, $_POST['password']));
   $query = "SELECT * FROM `students` WHERE Email='$email' AND Password='$password';";
-  
+
   $results = mysqli_query($db, $query);
   $row = mysqli_fetch_array($results);
   if (mysqli_num_rows($results) == 1) {
@@ -208,4 +208,11 @@ if (isset($_POST['appoint-post'])) {
   } else {
     echo "<h3>  Failed to get appointment</h3>";
   }
+}
+if (isset($_POST['b-view-process'])) {
+  $sql = "SELECT * FROM blogdata ORDER BY blogId DESC";
+  $result = mysqli_query($conn, $sql);
+  while ($row = $result->fetch_array()) :
+    $row['likes'];
+  endwhile;
 }
