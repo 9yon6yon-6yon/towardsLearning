@@ -46,6 +46,8 @@ $row = mysqli_fetch_array($query);
                                                                                               echo $q['question_detail'];
                                                                                             }  ?> </a></div>
         <div class="last-row">
+
+        
           <div class="status"><?php echo $q['Status']; ?></div>
           <div class="p-btn ">
             <button type="button" <?php if ($q['username'] == $row['username'] || $q['Status'] == "Answered") { ?> disabled="disabled" style="display: none;" <?php } ?> name="answer" class="p-btn-des" style="border: 1px solid black;"><a href="question.php?Question_ID=<?php echo $q['q_id']; ?>" style="text-decoration: none;color: black;">Answer</a></button>

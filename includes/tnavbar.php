@@ -37,7 +37,7 @@
                 <a class="dropdown-item" href="teacher-profile.php">Profile</a>
                 <a class="dropdown-item" href="upload.php">Upload Courses</a>
                 <a class="dropdown-item" href="edit-t-profile.php">Edit Profile</a>
-                <a class="dropdown-item" href="blogView.php">Blog</a>
+                <!-- <a class="dropdown-item" href="blogView.php">Blog</a> -->
                 <a class="dropdown-item" href="logout.php">Logout</a>
               </div>
           </div>

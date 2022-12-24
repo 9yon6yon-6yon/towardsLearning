@@ -240,7 +240,7 @@ if (isset($_POST['b-view-process'])) {
 if (isset($_POST['blogSubmit'])) {
   $title = dataFilter($_POST['blogTitle']);
   $content = $_POST['blogContent'];
-  $userName = $_SESSION['Username'];
+  $userName = $_SESSION['username'];
   $sql = "INSERT INTO `blogdata` (`blogUser`, `blogTitle`, `blogContent`)
 		    VALUES ('$userName', '$title', '$content');";
   $result = mysqli_query($db, $sql);
@@ -259,9 +259,11 @@ if (isset($_POST['CourseUpload'])) {
   $productInfo = $_POST['cinfo'];
   $productPrice = dataFilter($_POST['price']);
   $tid = $_SESSION['id'];
+  if (empty($tid)) {
+    $sql = "INSERT INTO `fcourses` (`tid`, `product`, `pcat`, `pinfo`, `price`) VALUES ('1', '$productName', '$productType', '$productInfo', '$productPrice');";
+  } else $sql = "INSERT INTO `fcourses` (`tid`, `product`, `pcat`, `pinfo`, `price`) VALUES ('$tid', '$productName', '$productType', '$productInfo', '$productPrice');";
 
-  $sql = "INSERT INTO `fcourses` (`tid`, `product`, `pcat`, `pinfo`, `price`) VALUES ('$tid', '$productName', '$productType', '$productInfo', '$productPrice');";
-  echo $sql;  
+  echo $sql;
   $result = mysqli_query($db, $sql);
   if (!$result) {
     $_SESSION['message'] = "Unable to upload Product !!!";

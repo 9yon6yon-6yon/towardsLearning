@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_SESSION['logged_in']) and $
 
 		$comment = dataFilter($_POST['comment']);
 		if (isset($_SESSION['logged_in']) and $_SESSION['logged_in'] == 1) {
-			$commentUser = $_SESSION['Username'];
+			$commentUser = $_SESSION['username'];
 			$pic = $_SESSION['picName'];
 		} else {
 			$commentUser = "Anonymous";
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_SESSION['logged_in']) and $
 		$sql = "SELECT * FROM blogdata ORDER BY blogId DESC";
 		$result = mysqli_query($db, $sql);
 
-		while ($row = $result->fetch_array()) {
+		while ($row = mysqli_fetch_assoc($result)) {
 			$check = "like" . $row['blogId'];
 			if (isset($_POST[$check])) {
 				$blogId = $row['blogId'];
