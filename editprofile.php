@@ -94,13 +94,13 @@ $row = mysqli_fetch_array($query);
           if (move_uploaded_file($tempname, $folder)) {
             echo "<center>Successfully done uploading</center>";
           } else {
-            echo "<h3>  Failed to upload image!</h3>";
+            echo "<center> Failed to upload image!<center>";
           }
         }
         $result = mysqli_query($db, $query2) or die(mysqli_error($db));
         if ($result) {
           echo "<div class='form'>
-                  <h3>Account Info Updated successfully.</h3><br/>
+          <center>Account Info Updated successfully.<center><br/>
                   </div>
                   ";
         }
