@@ -34,9 +34,10 @@
 
               <div class="dropdown-content">
                 <a class="dropdown-item" href="dashboard.php">Dashboard</a>
-                <a class="dropdown-item" href="user-profile.php">Profile</a>
-                <a class="dropdown-item" href="appointment.php">Hire Teachers</a>
+                <a class="dropdown-item" href="user-profile.php">Profile</a> 
                 <a class="dropdown-item" href="editprofile.php">Edit Profile</a>
+                <a class="dropdown-item" href="appointment.php">Hire Teachers</a>
+                <a class="dropdown-item" href="videodownload.php">Courses</a>
                 <a class="dropdown-item" href="blogView.php">Blog</a>
                 <a class="dropdown-item" href="logout.php">Logout</a>
               </div>

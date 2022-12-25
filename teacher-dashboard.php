@@ -6,16 +6,13 @@ $query = mysqli_query($db, "SELECT * FROM teacher where Email='$email'") or die(
 $row = mysqli_fetch_array($query);
 ?>
 <div class="main-area">
-  <?php // include('includes/left-sidebar.php'); ?>
-
   <div class="question-area">
     <div class="sm-title">
       <img src="img/Logo/Logo1.svg" alt="brain-icon">
       <div>The Brain - Answerer</div>
     </div>
     <div class="big-title">
-      <h1>Get Answers for FREE</h1>
-      <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" style="border-radius: 30px !important;">Ask your Question</button>
+      <h1>See Questions and Answers</h1>
     </div>
     <span class="hr-line"></span>
 
@@ -38,7 +35,7 @@ $row = mysqli_fetch_array($query);
             <div class="subject"><?php echo $q['Subject_Name']; ?></div>
             <div><?php echo ($interval->format("%a") * 24) + $interval->format("%h") . " hours" . $interval->format(" %i minutes "); ?> ago</div>
           </div>
-          <div class="point-bar"><i class="fas fa-star"></i><span class=""><?php echo $q['ques_points']; ?> points</div>
+
         </div>
         <div><a href="question.php?Question_ID=<?php echo $q['q_id']; ?>" class="ques_det"> <?php if (strlen($q['question_detail']) > 150) {
                                                                                               echo substr($q['question_detail'], 0, 150);

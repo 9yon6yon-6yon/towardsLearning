@@ -88,7 +88,7 @@ if (!isset($_SESSION['email'])) {
 							<td><?php echo $s['Email']; ?></td>
 							<td><?php echo $s['Education']; ?></td>
 							<td><?php echo $s['phone']; ?></td>
-							<td><img src="../uploads/<?php echo $s['cv']; ?>" height="50" width="50" alt="" loading="lazy" id="myImg" /></td>
+							<td><a href="../uploads/<?php echo $s['cv']; ?>" height="50" width="50" alt="" loading="lazy" id="myImg" /><img src="../img/cv.jpg" height="50" width="50" alt="" loading="lazy"></a></td>
 							<td class="text-center d-flex justify-content-center align-items-center">
 								<form action="admin-process.php" method="POST">
 									<input type="text" name="st_id" value="<?php echo $s['id']; ?>" style="display: none;">

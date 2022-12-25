@@ -1,7 +1,6 @@
-<?php include ('includes/session.php'); ?>
+<?php include ('includes/tsession.php'); ?>
 
 <div>
-
   <div class="topnav">
     <div class="wrapo">
       <div class="flexes">
@@ -20,7 +19,7 @@
           </div>
         </div>
         <div class="links">
-          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-right: 20px;border-radius: 30px !important;">Ask Question</button>
+          <!-- <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-right: 20px;border-radius: 30px !important;">Ask Question</button> -->
           <a href="teacher-dashboard.php">Dashboard</a>
           <a class="nav-link d-sm-flex align-items-sm-center" href="#">
           <img src="./uploads/<?php echo $row['profile_pic']; ?>"class="rounded-circle" height="24" width="24" alt=""
@@ -35,9 +34,9 @@
               <div class="dropdown-content">
                 <a class="dropdown-item" href="teacher-dashboard.php">Dashboard</a>
                 <a class="dropdown-item" href="teacher-profile.php">Profile</a>
-                <a class="dropdown-item" href="upload.php">Upload Courses</a>
                 <a class="dropdown-item" href="edit-t-profile.php">Edit Profile</a>
-                <!-- <a class="dropdown-item" href="blogView.php">Blog</a> -->
+                <a class="dropdown-item" href="upload.php">Upload Course</a>
+                <a class="dropdown-item" href="videoUpload.php">Upload Videos</a>
                 <a class="dropdown-item" href="logout.php">Logout</a>
               </div>
           </div>

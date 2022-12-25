@@ -1,8 +1,8 @@
 <?php
 include('includes/header.php');
 include('includes/navbar.php');
-$sql = "SELECT * FROM blogdata ORDER BY blogId DESC";
-$result = mysqli_query($db, $sql);
+$query = mysqli_query($db, "SELECT * FROM students where Email='$email'") or die(mysqli_error($db));
+$row = mysqli_fetch_array($query);
 if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_SESSION['logged_in']) and $_SESSION['logged_in'] == 1) {
 	if (isset($_POST['comment']) and $_POST['comment'] != "") {
 		$sql = "SELECT * FROM blogdata ORDER BY blogId DESC";
@@ -22,11 +22,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_SESSION['logged_in']) and $
 			$pic = $_SESSION['picName'];
 		} else {
 			$commentUser = "Anonymous";
-			$pic = "";
+			$pic = "./img/avatar.svg";
 		}
 		if (isset($blogId)) {
-			$sql = "INSERT INTO blogfeedback (blogId, comment, commentUser, commentPic)
+			$sql = "INSERT INTO `blogfeedback` (`blogId`, `comment`, `commentUser`, `commentPic`)
 						VALUES ('$blogId' ,'$comment', '$commentUser', '$pic');";
+						echo $sql;
 			$result = mysqli_query($db, $sql);
 		}
 	} else {
@@ -42,8 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_SESSION['logged_in']) and $
 		}
 		$likeCheck = "isLiked" . $blogId;
 		if (!isset($_SESSION[$likeCheck]) or $_SESSION[$likeCheck] == 0) {
-			$id = $_SESSION['id'];
+			// $id = $_SESSION['id'];
+			$id = $row['id'];
 			$sql = "SELECT * FROM likedata WHERE blogId = '$blogId' AND blogUserId = '$id'";
+			echo $sql;
 			$result = mysqli_query($db, $sql);
 			$num_rows = mysqli_num_rows($result);
 			if ($num_rows == 0) {
@@ -72,6 +75,8 @@ function formatDate($date)
 {
 	return date('g:i a', strtotime($date));
 }
+$sql = "SELECT * FROM blogdata ORDER BY blogId DESC";
+$result = mysqli_query($db, $sql);
 
 ?>
 

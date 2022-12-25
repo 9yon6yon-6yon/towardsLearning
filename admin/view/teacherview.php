@@ -18,7 +18,7 @@ if (isset($_POST['res_view'])) {
     	?>
     		<div style="width: 80%; margin:auto;">
     			<div style="display: flex; justify-content: center; width: 100%;">
-    				<img src="../../uploads/<?php echo $s['cv']; ?>" alt="resume" style="width: auto; max-height: 700px;">
+          <a href="http://localhost/towardsLearning/uploads/<?php echo $s['cv'];?>" alt="resume" style="width: auto; max-height: 700px;"><img src="../../img/cv.jpg" height="50" width="50" alt="" loading="lazy"></a>
     			</div>
     			<div style="display: flex; justify-content: center; width: 100%;"><a href="../admin-approval.php" style="text-decoration: none; font-size: 1.5em; color: black; font-family: sans-serif; margin-top: 30px; cursor: pointer;">Go Back</a></div>
     		</div>

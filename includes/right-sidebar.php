@@ -2,7 +2,7 @@
       <div class="profile-card">
         <div class="img-user">
           <div class="user-img">
-          <img src="./uploads/<?php echo $row['img']; ?>"class="rounded-circle " height="24" width="24" alt=""
+          <img src="./uploads/<?php if(empty($row['img'])){echo $row['profile_pic']; }else echo $row['img'];?>"class="rounded-circle " height="24" width="24" alt=""
               loading="lazy" /></div>
           <div class="lit-det">
             <span class="lit-user"><?php echo $row['username']; ?></span>
@@ -11,11 +11,10 @@
         </div>
         <div class="email-point">
           <b>Email: </b> <span style="font-weight: 500;"><?php echo $row['Email']; ?></span><br>
-          <div class="point-bar"><i class="fas fa-star"></i><span class=""><?php echo $row['points']; ?> points</div>
+          <div class="point-bar"><i class="fas fa-star"></i><span class=""><?php if(empty($row['points'])){
+           echo $row['status']; }else echo $row['points']; ?></div>
         </div>
-        <span class="hr-line"></span>
-        <div class="p-btn"><a href="user-profile.php" class="p-btn-des">View Profile</a></div>
-
+        <span class="hr-line"></span><div class="p-btn"
       </div>
       <div class="aski-toppers">
         <div class="top-title">
@@ -43,5 +42,5 @@
           }
         ?>
 
-        <div class="p-btn"><a href="editprofile.php" class="p-btn-des">Load More</a></div>
+        <div class="p-btn"><a href="dashboard.php" class="p-btn-des">Load More</a></div>
       </div>

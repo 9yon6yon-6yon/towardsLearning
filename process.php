@@ -229,13 +229,6 @@ if (isset($_POST['appoint-post'])) {
     echo "<h3>  Failed to get appointment</h3>";
   }
 }
-if (isset($_POST['b-view-process'])) {
-  $sql = "SELECT * FROM blogdata ORDER BY blogId DESC";
-  $result = mysqli_query($db, $sql);
-  while ($row = $result->fetch_array()) :
-    $row['likes'];
-  endwhile;
-}
 
 if (isset($_POST['blogSubmit'])) {
   $title = dataFilter($_POST['blogTitle']);
@@ -250,67 +243,6 @@ if (isset($_POST['blogSubmit'])) {
     header("location: errors.php");
   } else {
     header('location: blogView.php');
-  }
-}
-
-if (isset($_POST['CourseUpload'])) {
-  $productType = $_POST['type'];
-  $productName = dataFilter($_POST['cname']);
-  $productInfo = $_POST['cinfo'];
-  $productPrice = dataFilter($_POST['price']);
-  $tid = $_SESSION['id'];
-  if (empty($tid)) {
-    $sql = "INSERT INTO `fcourses` (`tid`, `product`, `pcat`, `pinfo`, `price`) VALUES ('1', '$productName', '$productType', '$productInfo', '$productPrice');";
-  } else $sql = "INSERT INTO `fcourses` (`tid`, `product`, `pcat`, `pinfo`, `price`) VALUES ('$tid', '$productName', '$productType', '$productInfo', '$productPrice');";
-
-  echo $sql;
-  $result = mysqli_query($db, $sql);
-  if (!$result) {
-    $_SESSION['message'] = "Unable to upload Product !!!";
-    header("location: teacher-dashboard.php");
-  } else {
-    $_SESSION['message'] = "successfull !!!";
-  }
-
-  $pic = $_FILES['coursePIC'];
-  $picName = $pic['name'];
-  $picTmpName = $pic['tmp_name'];
-  $picSize = $pic['size'];
-  $picError = $pic['error'];
-  $picType = $pic['type'];
-  $picExt = explode('.', $picName);
-  $picActualExt = strtolower(end($picExt));
-  $allowed = array('jpg', 'jpeg', 'png');
-
-  if (in_array($picActualExt, $allowed)) {
-    if ($picError === 0) {
-      $_SESSION['productPicId'] = $_SESSION['id'];
-      $picNameNew = $productName . $_SESSION['productPicId'] . "." . $picActualExt;
-      $_SESSION['productPicName'] = $picNameNew;
-      $_SESSION['productPicExt'] = $picActualExt;
-      $picDestination = "./uploads/" . $picNameNew;
-      move_uploaded_file($picTmpName, $picDestination);
-      $id = $_SESSION['id'];
-
-      $sql = "UPDATE fcourses SET pimage='$picNameNew' WHERE product='$productName';";
-
-      $result = mysqli_query($db, $sql);
-      if ($result) {
-
-        $_SESSION['message'] = "Product Image Uploaded successfully !!!";
-        header("location: teacher-dashboard.php");
-      } else {
-        //die("bad");
-        $_SESSION['message'] = "There was an error in uploading your product Image! Please Try again!";
-        header("location: teacher-dashboard.php");
-      }
-    } else {
-      $_SESSION['message'] = "There was an error in uploading your product image! Please Try again!";
-      header("location: teacher-dashboard.php");
-    }
-  } else {
-    $_SESSION['message'] = "You cannot upload files with this extension!!!";
-    header("location: teacher-dashboard.php");
   }
 }
 
