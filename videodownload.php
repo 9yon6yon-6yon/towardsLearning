@@ -19,7 +19,6 @@ if (!empty($_GET['file_id'])) {
 
     if (file_exists($filepath)) {
         header("Cache-Control: public");
-        header("Content-Description: File Transfer");
         header("Content-Disposition: attachment; filename=$file");
         header("Content-Type: " . mime_content_type($filepath));
         header("Content-Transfer-Encoding: binary");
@@ -27,7 +26,6 @@ if (!empty($_GET['file_id'])) {
         // ob_clean();
         // flush();
         readfile($filepath);
-        // Now update downloads count
         $newCount = $file['downloads'] + 1;
         $updateQuery = "UPDATE files SET downloads=$newCount WHERE id=$id";
         mysqli_query($db, $updateQuery);
@@ -40,20 +38,22 @@ if (!empty($_GET['file_id'])) {
         <div class="question" id="response" style="width: 70%">
             <div class="row uniform">
                 <table>
-                    <thead>
-                        <th>ID</th>
+                    <thead >
+                        <th style="padding-left:30px;padding-top:10px;">ID</th>
                         <th>Filename</th>
                         <th>size</th>
                         <th>Downloads</th>
-                        <th>Action</th>
+                        <th>Download</th>
+                        <th>Live</th>
                     </thead>
                     <tbody>
                         <?php foreach ($files as $file) : ?>
-                            <td><?php echo $file['id']; ?></td>
+                            <td style="padding-left:30px;"><?php echo $file['id']; ?></td>
                             <td><?php echo $file['name']; ?></td>
                             <td><?php echo floor($file['size'] / 1000) . ' KB'; ?></td>
                             <td><?php echo $file['downloads']; ?></td>
                             <td><a href="videodownload.php?file_id=<?php echo $file['id'] ?>">Download</a></td>
+                            <td><a href="http://localhost/towardsLearning/uploads/<?php echo $file['name'] ?>">Watch</a></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
