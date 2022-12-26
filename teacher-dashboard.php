@@ -1,5 +1,5 @@
 <?php
-include('includes/header.php');
+include('includes/theader.php');
 include('includes/tnavbar.php');
 
 $query = mysqli_query($db, "SELECT * FROM teacher where Email='$email'") or die(mysqli_error($db));

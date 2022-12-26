@@ -62,9 +62,12 @@ function dataFilter($data)
                             <option value="Finance">Finance</option>
                             <option value="English">English</option>
                             <option value="Math">Math</option>
-                            <option value="CSE">CSE</option>
+                            <option value="Computer Science">Computer Science</option>
                             <option value="Biology">Biology</option>
                             <option value="Law">Law</option>
+                            <option value="Physics">Physics</option>
+                            <option value="Economics">Economics</option>
+                            <option value="History">History</option>
                             <option value="Chemistry">Chemistry</option>
                         </select>
                     </div>

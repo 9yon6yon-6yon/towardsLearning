@@ -1,9 +1,16 @@
 <?php
-include('includes/header.php');
+include('includes/theader.php');
 include('includes/tnavbar.php');
 $query = mysqli_query($db, "SELECT * FROM teacher where Email='$email'") or die(mysqli_error($db));
 $row = mysqli_fetch_array($query);
 $id =  $row['id'];
+
+
+$courses_count = mysqli_query($db, "SELECT COUNT(pid) FROM `fcourses` where tid='$id'") or die(mysqli_error($db));
+$cc = mysqli_fetch_array($courses_count);
+
+$video_count = mysqli_query($db, "SELECT COUNT(id) FROM `files` where tid='$id'") or die(mysqli_error($db));
+$vc = mysqli_fetch_array($video_count);
 ?>
 
 <div class="jinispotro">
@@ -19,8 +26,17 @@ $id =  $row['id'];
             </div>
         </div>
         <span class="hr-line" style="margin-top: 30px;"></span>
-
-
+        <div class="info-section">
+            <div class="ans-count">
+                <p>Courses </p>
+                <p><?php echo $cc['0']; ?></p>
+            </div>
+            <hr width="3" size="40" style="width: auto; background: black;">
+            <div class="ques-count">
+                <p>Videos</p>
+                <p><?php echo $vc['0']; ?></p>
+            </div>
+        </div>
         <div class="p-btn"><a href="edit-t-profile.php" class="p-btn-des"><i class="fas fa-pencil-alt"></i> Edit Profile</a></div>
 
         <div class="about">
@@ -52,9 +68,9 @@ $id =  $row['id'];
             <section>
                 <div class="content content-1">
                     <?php
-                    $ques = mysqli_query($db, "SELECT q_id, question_detail, Subject_Name, id  FROM questions q
-   JOIN students s ON q.student_id=s.id
-   JOIN subjects sub ON q.subject_code=sub.s_code where q.student_id = '$id' ") or die(mysqli_error($db));
+                    $ques = mysqli_query($db, "SELECT *  FROM `fcourses` f
+   JOIN `teacher` t ON f.tid=t.id
+   JOIN `subjects` sub ON f.pcat=sub.Subject_Name where f.tid = '$id' ") or die(mysqli_error($db));
                     if ($rowcount = mysqli_num_rows($ques) > 0) {
 
                         while ($q = mysqli_fetch_assoc($ques)) {
@@ -63,14 +79,14 @@ $id =  $row['id'];
                             <div class="question" id="response">
                                 <div class="infos">
                                     <div class="info-title" style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                        <div class="subject"><?php echo $q['Subject_Name']; ?></div>
+                                        <div class="subject"><?php echo $q['pcat']; ?></div>
                                     </div>
                                 </div>
-                                <div><a href="question.php?Question_ID=<?php echo $q['q_id'] ?>" class="ques_det"> <?php if (strlen($q['question_detail']) > 150) {
-                                                                                                                        echo substr($q['question_detail'], 0, 150);
-                                                                                                                    } else {
-                                                                                                                        echo $q['question_detail'];
-                                                                                                                    }  ?> </a></div>
+                                <div><a href="detailedview.php?p_ID=<?php echo $q['pid'] ?>" class="ques_det"> <?php if (strlen($q['pinfo']) > 150) {
+                                                                                                                    echo substr($q['pinfo'], 0, 150);
+                                                                                                                } else {
+                                                                                                                    echo $q['pinfo'];
+                                                                                                                }  ?> </a></div>
                                 <span class="hr-line"></span>
                             </div>
                         <?php
@@ -84,27 +100,28 @@ $id =  $row['id'];
                 </div>
                 <div class="content content-2">
                     <?php
-                    $soln = mysqli_query($db, "SELECT ques_id, question_detail, answer FROM solutions s
-   JOIN questions q ON q.q_id=s.ques_id
-   where s.student_id = '$id'") or die(mysqli_error($db));
+                    $soln = mysqli_query($db, "SELECT * FROM `files` f
+   JOIN `teacher` t ON f.tid=t.id
+   where t.id = '$id'") or die(mysqli_error($db));
                     if ($rc = mysqli_num_rows($soln) > 0) {
 
                         while ($s = mysqli_fetch_assoc($soln)) {
 
                     ?>
                             <div class="question" id="response">
-                                <h6 class="subject">Question</h6>
-                                <div style=" margin-bottom: 10px;"><a href="question.php?Question_ID=<?php echo $s['ques_id'] ?>" class="ques_det"> <?php if (strlen($s['question_detail']) > 120) {
-                                                                                                                                                        echo substr($s['question_detail'], 0, 120);
-                                                                                                                                                    } else {
-                                                                                                                                                        echo $s['question_detail'];
-                                                                                                                                                    }  ?> </a></div>
-
                                 <div class="infos">
-                                    <div class="info-title">
-                                        <h6 class="subject">Your coursesr</h6>
-                                        <div><?php echo $s['answer']; ?></div>
+                                    <div class="info-title" style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                        <h6 class="subject"><?php echo $s['pcat']; ?></h6>
                                     </div>
+                                    <div style=" margin-bottom: 10px;"><a href="detailedView.php?_ID=<?php echo $s['id'] ?>" class="ques_det"> <?php if (strlen($s['pinfo']) > 120) {
+                                                                                                                                                echo substr($s['pinfo'], 0, 120);
+                                                                                                                                            } else {
+                                                                                                                                                echo $s['pinfo'];
+                                                                                                                                            }  ?> </a></div>
+
+
+                                    <div>Downloads : <?php echo $s['downloads']; ?></div>
+
                                 </div>
 
                                 <span class="hr-line"></span>

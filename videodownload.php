@@ -41,15 +41,17 @@ if (!empty($_GET['file_id'])) {
                     <thead >
                         <th style="padding-left:30px;padding-top:10px;">ID</th>
                         <th>Filename</th>
+                        <th>Catagory</th>
                         <th>size</th>
                         <th>Downloads</th>
-                        <th>Download</th>
+                        <th>Action</th>
                         <th>Live</th>
                     </thead>
                     <tbody>
                         <?php foreach ($files as $file) : ?>
                             <td style="padding-left:30px;"><?php echo $file['id']; ?></td>
-                            <td><?php echo $file['name']; ?></td>
+                            <td><a href="vVideos.php?_fileName=<?php echo $file['name']; ?>"><?php echo $file['name']; ?></a></td>
+                            <td><?php echo $file['pcat']; ?></td>
                             <td><?php echo floor($file['size'] / 1000) . ' KB'; ?></td>
                             <td><?php echo $file['downloads']; ?></td>
                             <td><a href="videodownload.php?file_id=<?php echo $file['id'] ?>">Download</a></td>
