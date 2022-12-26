@@ -36,7 +36,6 @@
                   loading="lazy" />
                   <div class="img-name-size"><?php echo $i['username']; ?></div>
                </div>
-              <div><?php echo $i['points']; ?> pts</div>
             </div>
             <?php
           }
