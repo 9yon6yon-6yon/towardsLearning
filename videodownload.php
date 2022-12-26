@@ -7,6 +7,13 @@ $row = mysqli_fetch_array($query);
 $sql = "SELECT * FROM files";
 $result = mysqli_query($db, $sql);
 $files = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+$sql2 = "SELECT * FROM fcourses";
+$result2 = mysqli_query($db, $sql2);
+$files2 = mysqli_fetch_all($result2, MYSQLI_ASSOC);
+
+
+
 if (!empty($_GET['file_id'])) {
     $id = $_GET['file_id'];
 
@@ -33,12 +40,13 @@ if (!empty($_GET['file_id'])) {
     }
 }
 ?>
-<form>
-    <div class="main-area">
+<form  style="padding-top: 20px; padding-left: 50px;">
+    <div class="main-area" >
         <div class="question" id="response" style="width: 70%">
-            <div class="row uniform">
+            <div class="row uniform" style="padding-top: 20px; padding-bottom: 50px;">
+                <center><h3>Lecture Videos</h3></center>
                 <table>
-                    <thead >
+                    <thead>
                         <th style="padding-left:30px;padding-top:10px;">ID</th>
                         <th>Filename</th>
                         <th>Catagory</th>
@@ -61,8 +69,29 @@ if (!empty($_GET['file_id'])) {
                     </tbody>
                 </table>
             </div>
+            <div class="row uniform"  style="padding-top: 20px; padding-bottom: 50px;">
+            <center><h3>Courses</h3></center>
+                <table>
+                    <thead>
+                        <th style="padding-left:30px;padding-top:10px;">ID</th>
+                        <th>Name</th>
+                        <th>Catagory</th>
+                        <th>Price</th>
+                        <th>View</th>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($files2 as $file2) : ?>
+                            <td style="padding-left:30px;"><?php echo $file2['pid']; ?></td>
+                            <td><a href="vCourses.php?_course=<?php echo $file2['product']; ?>"><?php echo $file2['product']; ?></a></td>
+                            <td><?php echo $file2['pcat']; ?></td>
+                            <td><?php echo $file2['price']; ?></td>
+                            <td><a href="http://localhost/towardsLearning/uploads/<?php echo $file2['pimage'] ?>">Watch</a></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
-
         <div class="right-sidebar">
             <?php include('includes/right-sidebar.php'); ?>
         </div>

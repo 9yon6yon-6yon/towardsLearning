@@ -5,7 +5,7 @@ include('includes/tnavbar.php');
 $query = mysqli_query($db, "SELECT * FROM teacher where Email='$email'") or die(mysqli_error($db));
 $row = mysqli_fetch_array($query);
 ?>
-<div class="main-area">
+<div class="main-area" style="padding-top: 20px; padding-left: 50px;">
   <div class="question-area">
     <div class="sm-title">
       <img src="img/Logo/Logo1.svg" alt="brain-icon">
