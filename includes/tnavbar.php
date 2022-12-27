@@ -12,8 +12,8 @@
           
           <div class="search-container">
             <form>
-              <input type="text" placeholder="Search.." name="search" id="input" 
-                               autocomplete="off">
+              <input type="search" placeholder="search..." name="search" id="input" 
+              autocomplete="off" aria-controls="myTable">
               <div class="result"></div>
             </form>
           </div>
