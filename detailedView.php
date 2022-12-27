@@ -8,7 +8,7 @@ $id =  $row['id'];
 $u_id = $_GET['_ID'];
 $ques = mysqli_query($db,  "SELECT *  FROM `files` f
         JOIN `teacher` t ON f.tid=t.id
-        JOIN `subjects` sub ON f.pcat=sub.Subject_Name WHERE f.id='$u_id'") or die(mysqli_error($db));
+        JOIN `subjects` sub ON f.pcat=sub.Subject_Name WHERE f.fileid='$u_id'") or die(mysqli_error($db));
 $q = mysqli_fetch_assoc($ques);
 ?>
 

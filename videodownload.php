@@ -18,7 +18,7 @@ if (!empty($_GET['file_id'])) {
     $id = $_GET['file_id'];
 
     // fetch file to download from database
-    $sql = "SELECT * FROM files WHERE id=$id";
+    $sql = "SELECT * FROM files WHERE fileid=$id";
     $result = mysqli_query($db, $sql);
 
     $file = mysqli_fetch_assoc($result);
@@ -34,7 +34,7 @@ if (!empty($_GET['file_id'])) {
         // flush();
         readfile($filepath);
         $newCount = $file['downloads'] + 1;
-        $updateQuery = "UPDATE files SET downloads=$newCount WHERE id=$id";
+        $updateQuery = "UPDATE files SET downloads=$newCount WHERE fileid=$id";
         mysqli_query($db, $updateQuery);
         exit;
     }
@@ -57,12 +57,12 @@ if (!empty($_GET['file_id'])) {
                     </thead>
                     <tbody>
                         <?php foreach ($files as $file) : ?>
-                            <td style="padding-left:30px;"><?php echo $file['id']; ?></td>
+                            <td style="padding-left:30px;"><?php echo $file['fileid']; ?></td>
                             <td><a href="vVideos.php?_fileName=<?php echo $file['name']; ?>"><?php echo $file['name']; ?></a></td>
                             <td><?php echo $file['pcat']; ?></td>
                             <td><?php echo floor($file['size'] / 1000) . ' KB'; ?></td>
                             <td><?php echo $file['downloads']; ?></td>
-                            <td><a href="videodownload.php?file_id=<?php echo $file['id'] ?>">Download</a></td>
+                            <td><a href="videodownload.php?file_id=<?php echo $file['fileid'] ?>">Download</a></td>
                             <td><a href="http://localhost/towardsLearning/uploads/<?php echo $file['name'] ?>">Watch</a></td>
                             </tr>
                         <?php endforeach; ?>

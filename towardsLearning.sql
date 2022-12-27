@@ -56,7 +56,7 @@ CREATE TABLE `fcourses` (
 
 
 CREATE TABLE `files` (
-  `id` int(255) NOT NULL,
+  `fileid` int(255) NOT NULL,
   `tid` int(10) NOT NULL,
   `product` varchar(25) NOT NULL,
   `pcat` varchar(256) NOT NULL,

@@ -9,7 +9,7 @@ $id =  $row['id'];
 $courses_count = mysqli_query($db, "SELECT COUNT(pid) FROM `fcourses` where tid='$id'") or die(mysqli_error($db));
 $cc = mysqli_fetch_array($courses_count);
 
-$video_count = mysqli_query($db, "SELECT COUNT(id) FROM `files` where tid='$id'") or die(mysqli_error($db));
+$video_count = mysqli_query($db, "SELECT COUNT(fileid) FROM `files` where tid='$id'") or die(mysqli_error($db));
 $vc = mysqli_fetch_array($video_count);
 ?>
 
@@ -113,7 +113,7 @@ $vc = mysqli_fetch_array($video_count);
                                     <div class="info-title" style="display: flex; justify-content: space-between; margin-bottom: 10px;">
                                         <h6 class="subject"><?php echo $s['pcat']; ?></h6>
                                     </div>
-                                    <div style=" margin-bottom: 10px;"><a href="detailedView.php?_ID=<?php echo $s['id'] ?>" class="ques_det"> <?php if (strlen($s['pinfo']) > 120) {
+                                    <div style=" margin-bottom: 10px;"><a href="detailedView.php?_ID=<?php echo $s['fileid'] ?>" class="ques_det"> <?php if (strlen($s['pinfo']) > 120) {
                                                                                                                                                 echo substr($s['pinfo'], 0, 120);
                                                                                                                                             } else {
                                                                                                                                                 echo $s['pinfo'];
