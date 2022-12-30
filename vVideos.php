@@ -11,9 +11,10 @@ $q = mysqli_fetch_assoc($ques);
 
 <div class="contains">
     <div class="qsn-view">
-        <div class="qsn"><h5 style="margin-bottom: 20px;">Uploaded By</h5> 
+        <div class="qsn">
+            <h5 style="margin-bottom: 20px;">Uploaded By</h5>
             <div class="qsn-info">
-                <div class="img-poster">  
+                <div class="img-poster">
                     <img src="./uploads/<?php echo $q['profile_pic']; ?>" class="rounded-circle " height="35" width="35" alt="" loading="lazy" style="margin-right: 20px;" />
                     <div class="qsn-poster">
                         <div><?php echo $q['Name']; ?></div>
@@ -23,13 +24,21 @@ $q = mysqli_fetch_assoc($ques);
                 <div class="status-ind">Downloads <?php echo $q['downloads']; ?></div>
             </div>
             <div class="qsn-main">
-            <div><h2><?php echo $q['product']; ?></h2></div>
+                <div>
+                    <h2><?php echo $q['product']; ?></h2>
+                </div>
                 <p><?php echo $q['pinfo']; ?></p>
             </div>
             <div class="qsn_img" style="margin-bottom: 30px;">
-                <img src="./uploads/<?php echo $q['name']; ?>">
+                <video width="670" autoplay controls="true">
+                    <source src="./uploads/<?php echo $q['name']; ?>" type="video/mp4">
+                    <source src="./uploads/<?php echo $q['name']; ?>" type="video/ogg">
+                </video>
+
             </div>
-            <div><p>File size : <?php  echo floor($q['size']/1024) ,'KB';?></p></div>
+            <div>
+                <p>File size : <?php echo floor($q['size'] / 1024), 'KB'; ?></p>
+            </div>
         </div>
         <span class="hr-line"></span>
 

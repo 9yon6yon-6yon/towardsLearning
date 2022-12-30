@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $extension = pathinfo($filename, PATHINFO_EXTENSION);
     $file = $_FILES['course']['tmp_name'];
     $size = $_FILES['course']['size'];
-    if (!in_array($extension, ['zip', 'pdf', 'docx', 'png', 'jpg', 'jpeg','mp4'])) {
+    if (!in_array($extension, ['mp4','mkv','webm'])) {
     } else {
         if (move_uploaded_file($file, $destination)) {
             $sql = "INSERT INTO `files` (`tid`, `product`, `pcat`, `pinfo`, `name`, `size`, `type` , `downloads`) VALUES ('$tid', '$productName', '$productType', '$productInfo', '$filename', $size, '$extension' ,0)";
