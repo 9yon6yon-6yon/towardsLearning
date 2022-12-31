@@ -19,7 +19,10 @@ CREATE TABLE `appointments` (
   `st_id` int(20) NOT NULL,
   `teacher_id` int(20) NOT NULL,
   `time` datetime NOT NULL,
-  `teacherName` varchar(255) NOT NULL
+  `teacherName` varchar(255) NOT NULL,
+  `method` varchar(256) NOT NULL,
+  `link` varchar(256) NOT NULL,
+  `status` varchar(200) NOT NULL DEFAULT 'Unapproved'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 

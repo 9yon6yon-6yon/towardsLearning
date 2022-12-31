@@ -35,6 +35,7 @@
                 <a class="dropdown-item" href="teacher-dashboard.php">Dashboard</a>
                 <a class="dropdown-item" href="teacher-profile.php">Profile</a>
                 <a class="dropdown-item" href="edit-t-profile.php">Edit Profile</a>
+                <a class="dropdown-item" href="appoinmentshow.php">Show Appointment</a>
                 <a class="dropdown-item" href="upload.php">Upload Course</a>
                 <a class="dropdown-item" href="videoUpload.php">Upload Videos</a>
                 <a class="dropdown-item" href="logout.php">Logout</a>
